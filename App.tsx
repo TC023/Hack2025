@@ -5,22 +5,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
-function HomeScreen({ navigation }: any) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Expo React Native App!</Text>
-      <Button title="Switch to Details" onPress={() => navigation.navigate('Details')} />
-    </View>
-  );
-}
-
-function DetailsScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>This is the Details Screen.</Text>
-    </View>
-  );
-}
+import { HomeScreen } from './pages/HomeScreen';
+import { DetailsScreen } from './pages/DetailsScreen';
 
 export default function App() {
   return (
