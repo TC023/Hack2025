@@ -9,7 +9,7 @@ function HomeScreen({ navigation }: any) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Expo React Native App!</Text>
-      <Button title="Go to Details" onPress={() => navigation.navigate('Details')} />
+      <Button title="Switch to Details" onPress={() => navigation.navigate('Details')} />
     </View>
   );
 }
