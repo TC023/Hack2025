@@ -2,10 +2,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
+import multer from "multer";
 import { OpenAI } from "openai";
 
 const app = express();
 app.use(express.json());
+const upload = multer();
 
 // Cliente de OpenAI usando tu clave del .env
 const client = new OpenAI({
@@ -19,10 +21,8 @@ app.get("/", (req, res) => {
 });
 
 // Endpoint: recibe un mensaje y devuelve la respuesta
-app.post("/chat", async (req, res) => {
-  console.log("Solicitud recibida:", req.body);
+app.post("/chat", upload.none(), async (req, res) => {
   const { message } = req.body;
-  console.log("Mensaje recibido:", message);  
   if (!message) {
     return res.status(400).json({ error: "Falta el campo 'message' en el body" });
   }
