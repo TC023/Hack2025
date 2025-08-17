@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainLayout from './layout/MainLayout';
@@ -10,18 +9,22 @@ import { HomeScreen } from './pages/HomeScreen';
 import { DetailsScreen } from './pages/DetailsScreen';
 import Quiz from './pages/Quiz';
 import { AuthProvider } from './context/AuthContext';
+import { ProfileProvider } from './context/ProfileContext';
 import { Start } from './pages/Start'
 import { SignUp } from './pages/SignUp';
 import { LogIn } from './pages/LogIn';
+import { ARScene } from './pages/ARScene';
 
 export default function App() {
   return (
     <AuthProvider>
-      <NavigationContainer>
+      <ProfileProvider>
+        <NavigationContainer>
         <Stack.Navigator initialRouteName="Start" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Start" component={Start} />
           <Stack.Screen name="SignUp" component={SignUp} />
           <Stack.Screen name="LogIn" component={LogIn} />
+          <Stack.Screen name="CareerSimulation" component={ARScene} />
           {/* Main app area with bottom tabs */}
           <Stack.Screen name="Main" children={() => (
             <MainLayout
@@ -33,7 +36,8 @@ export default function App() {
             />
           )} />
         </Stack.Navigator>
-      </NavigationContainer>
+        </NavigationContainer>
+      </ProfileProvider>
     </AuthProvider>
   );
 }

@@ -24,7 +24,7 @@ export const SignUp: React.FC = ({navigation}:any) => {
         form.append("grade", grade)
         form.append("language", language)
         
-        await fetch(urls.dbServer, {
+        await fetch(`${urls.dbServer}/users`, {
             method: "POST",
             body: form,
         }).then(res => {
@@ -88,7 +88,7 @@ export const SignUp: React.FC = ({navigation}:any) => {
             <Button title="Sign Up" onPress={handleSignUp} />
 
             { message && (
-                <span>{message}</span>
+                <Text>{message}</Text>
             ) }
             
         </ScrollView>

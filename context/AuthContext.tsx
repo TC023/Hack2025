@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
-import { urls } from '../constants/urls';
 
 export interface User {
   id: string | number;
@@ -28,33 +27,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Simulated login: ignores credentials and sets dummy profile data
   const login = useCallback(async (email: string, password: string) => {
-    if (!urls.dbServer) {
-      setError('Backend URL not configured');
-      return false;
-    }
     setLoading(true);
     setError(null);
-    try {
-      const res = await fetch(urls.dbServer.replace(/\/$/, '') + '/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || 'Invalid credentials');
-      }
-      const data = await res.json();
-      // Expect user info + token. Adjust keys as backend dictates.
-      setUser(data.user || data);
-      setLoading(false);
-      return true;
-    } catch (e: any) {
-      setError(e.message || 'Login failed');
-      setLoading(false);
-      return false;
-    }
+    // small artificial delay to show spinner
+    await new Promise(r => setTimeout(r, 600));
+    const dummyUser: User = {
+      id: 'demo-1',
+      name: 'Alonso',
+      last_name: 'Lopez',
+      email: email || 'alonso@example.com',
+      grade: '5to',
+      language: 'ES',
+      token: 'fake-token-123',
+      role: 'tester',
+    };
+    setUser(dummyUser);
+    setLoading(false);
+    return true;
   }, []);
 
   const logout = () => {

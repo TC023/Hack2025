@@ -11,10 +11,8 @@ export const LogIn: React.FC = () => {
     const { login, loading, error } = useAuth();
 
     const handleLogin = async () => {
-        if (!email || !password) return;
         const ok = await login(email, password);
         if (ok) {
-            // Reset navigation stack to main area
             navigation.reset({ index: 0, routes: [{ name: 'Main' }] });
         }
     };
