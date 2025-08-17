@@ -15,7 +15,9 @@ export function HomeScreen({ navigation }: any) {
         fontWeight: 'bold',
         marginBottom: 20,
       }}>Welcome to Expo React Native App!</Text>
-      <Button title="Switch to Details" onPress={() => navigation.navigate('Details')} />
+  <Button title="Go to Details" onPress={() => navigation.navigate('Details')} />
+  <View style={{ height: 12 }} />
+  <Button title="Video Analysis (Selfies)" onPress={() => navigation.navigate('VideoAnalysis')} />
     </View>
   );
 }

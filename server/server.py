@@ -21,6 +21,7 @@ def predict():
     if not files:
         return jsonify({'error': 'No images found'}), 400
     emotions = []
+    print(request)
     for file in files:
         img_bytes = file.read()
         img = Image.open(io.BytesIO(img_bytes)).convert('L')  # Convert to grayscale
@@ -35,6 +36,7 @@ def predict():
     # Calcular la emoción más frecuente
     if emotions:
         most_frequent = max(set(emotions), key=emotions.count)
+        print(most_frequent)
         return jsonify({"most_frequent": most_frequent})
     else:
         return jsonify({'error': 'No valid images processed'}), 400

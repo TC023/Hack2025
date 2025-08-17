@@ -7,6 +7,7 @@ const Stack = createNativeStackNavigator();
 
 import { HomeScreen } from './pages/HomeScreen';
 import { DetailsScreen } from './pages/DetailsScreen';
+import VideoAnalysisScreen from './pages/VideoAnalysis';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="VideoAnalysis" component={VideoAnalysisScreen} options={{ title: 'Video + Selfies' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
